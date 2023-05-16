@@ -64,5 +64,4 @@ $lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     
 </div>
 
-
 <?php include("../../templates/footer.php");?>
