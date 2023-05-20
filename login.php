@@ -76,7 +76,7 @@ if($_POST){
                         <strong><?php echo $mensaje;?></strong>
                     </div>
                     <?php }?>
-                    <form action="" method="post">
+                    <form action="" method="POST">
                         <!-- bs5-form-input-->
                         <div class="mb-3">
                           <label for="usuario" class="form-label">Usuario:</label>
