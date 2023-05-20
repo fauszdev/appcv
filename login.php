@@ -94,7 +94,6 @@ if($_POST){
             </div>
         </div>
     </div>
-
   </main>
 
   <footer>
