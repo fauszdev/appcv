@@ -16,18 +16,18 @@ if(isset($_GET['txtID'])){
     //Buscamos el registro con la foto
     if(isset($registro_recuperado["foto"]) && $registro_recuperado["foto"]!=""){
         //Si existe este archivo
-        if(file_exists("./".$registro_recuperado["foto"])){
+        if(file_exists("./img/".$registro_recuperado["foto"])){
             //Borramos el archivo
-            unlink("./".$registro_recuperado["foto"]);
+            unlink("./img/".$registro_recuperado["foto"]);
         }
     }
 
     //Buscamos el registro con el pdf
     if(isset($registro_recuperado["cv"]) && $registro_recuperado["cv"]!=""){
         //Si existe este archivo
-        if(file_exists("./".$registro_recuperado["cv"])){
+        if(file_exists("./pdf/".$registro_recuperado["cv"])){
             //Borramos el archivo
-            unlink("./".$registro_recuperado["cv"]);
+            unlink("./pdf/".$registro_recuperado["cv"]);
         }
     }
     
@@ -88,7 +88,7 @@ $lista_tbl_empleados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $registro['id'];?></td>
                         <td scope="row"><?php echo $registro['primer_nombre']." ".$registro['segundo_nombre']." ".$registro['primer_apellido']." ".$registro['segundo_apellido'];?></td>
                         <td>
-                        <img width="50" src="<?php echo $registro['foto'];?>" class="img-fluid rounded" alt="" /></td>
+                        <img width="50" src="./img/<?php echo $registro['foto'];?>" class="img-fluid rounded" alt="" /></td>
                         <td>
                             <a href="<?php echo $registro['cv'];?>" target="_blank"><?php echo $registro['cv'];?></a>
                         </td>

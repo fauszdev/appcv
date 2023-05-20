@@ -6,7 +6,7 @@
         <div class="container-fluid py-5">
           <h1 class="display-5 fw-bold">Bienvenid@ al sistema</h1>
           <p class="col-md-8 fs-4">Usuario: <?php echo $_SESSION['usuario'];?></p>
-          <button class="btn btn-primary btn-lg" type="button">Example button</button>
+          <button class="btn btn-primary btn-lg" type="button" onclick="info()">Info</button>
         </div>
       </div>
     <!--Incluimos el Footer-->

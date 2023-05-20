@@ -32,7 +32,7 @@ if($_POST){
   //Si la foto temporal no esta vacia (si hay una foto)
   if($tmp_foto!=""){
     //Indicamos a donde va a ir el archivo con el nuevo nombre
-    move_uploaded_file($tmp_foto,"./".$nombre_archivo_foto);
+    move_uploaded_file($tmp_foto,"./img/".$nombre_archivo_foto);
   }
 
   //Hay que adjuntar la foto
@@ -47,7 +47,7 @@ if($_POST){
   //Si la foto temporal no esta vacia (si hay una foto)
   if($tmp_pdf!=""){
     //Indicamos a donde va a ir el archivo con el nuevo nombre
-    move_uploaded_file($tmp_pdf,"./".$nombre_archivo_pdf);
+    move_uploaded_file($tmp_pdf,"./pdf/".$nombre_archivo_pdf);
   }
   $sentencia->bindParam(":cv_empleado",$nombre_archivo_pdf);
 

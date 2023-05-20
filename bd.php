@@ -7,7 +7,7 @@ $baseDeDatos= "appcv";
 //Usuario de la BD
 $usuario="root";
 //Contraseña del usuario de la BD
-$contrasenia="Admin@0albatera";
+$contrasenia="";
 
 //Intentamos establecer conexion a la BD, en caso de no poder mostramos la excepcion por pantalla
 try{

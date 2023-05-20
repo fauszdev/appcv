@@ -78,6 +78,10 @@
         })*/
         //index.php?txtID=
     }
+
+    function info(){
+      Swal.fire('Página Web de práctica creada por: Faustino Cerdán Gomis alias Fauszdev');
+    }
 </script>
 </body>
 

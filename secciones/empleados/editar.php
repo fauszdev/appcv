@@ -70,7 +70,7 @@ if(isset($_GET['txtID'])){
         //Si la foto temporal no esta vacia (si hay una foto)
         if($tmp_foto!=""){
           //Indicamos a donde va a ir el archivo con el nuevo nombre, ahi crea la imagen
-          move_uploaded_file($tmp_foto,"./".$nombre_archivo_foto);
+          move_uploaded_file($tmp_foto,"./img/".$nombre_archivo_foto);
           //Buscar el archivo (foto y pdf) relacionado con el empleado cuando el id sea encontrado para poder eliminar el antiguo
 
           $sentencia = $conexion->prepare("SELECT foto FROM `tbl_empleados` WHERE id=:id");
@@ -81,9 +81,9 @@ if(isset($_GET['txtID'])){
           //Buscamos el registro con la foto
           if(isset($registro_recuperado["foto"]) && $registro_recuperado["foto"]!=""){
               //Si existe este archivo
-              if(file_exists("./".$registro_recuperado["foto"])){
+              if(file_exists("./img/".$registro_recuperado["foto"])){
                   //Borramos el archivo
-                  unlink("./".$registro_recuperado["foto"]);
+                  unlink("./img/".$registro_recuperado["foto"]);
               }
           }
 
@@ -104,10 +104,10 @@ if(isset($_GET['txtID'])){
         //Variable temporal con el nombre temporal del pdf para usarlo a la hora de mover el pdf al nuevo destino
         $tmp_pdf = $_FILES['cv_empleado']['tmp_name'];
 
-        //Si la foto temporal no esta vacia (si hay una foto)
+        //Si la foto temporal no esta vacia (si hay un pdf)
         if($tmp_pdf!=""){
           //Indicamos a donde va a ir el archivo con el nuevo nombre
-          move_uploaded_file($tmp_pdf,"./".$nombre_archivo_pdf);
+          move_uploaded_file($tmp_pdf,"./pdf/".$nombre_archivo_pdf);
 
           $sentencia = $conexion->prepare("SELECT cv FROM `tbl_empleados` WHERE id=:id");
           $sentencia->bindParam(":id",$txtID);
@@ -117,9 +117,9 @@ if(isset($_GET['txtID'])){
           //Buscamos el registro con el pdf
           if(isset($registro_recuperado["cv"]) && $registro_recuperado["cv"]!=""){
             //Si existe este archivo
-            if(file_exists("./".$registro_recuperado["cv"])){
+            if(file_exists("./pdf/".$registro_recuperado["cv"])){
                 //Borramos el archivo
-                unlink("./".$registro_recuperado["cv"]);
+                unlink("./pdf/".$registro_recuperado["cv"]);
             }
           }
 
