@@ -19,8 +19,11 @@ if($_POST){
   $sentencia->bindParam(":correo_usuario",$correo_usuario);
   $sentencia->execute();
 
-  //Tras la insercion de datos a la BD redireccionamos la página al index.
-  header("Location:index.php");
+  //Guardamos el mensaje para mostrarlo en el paso mas adelante
+  $mensaje="Registro agregado";
+
+  //Redigirá a la misma pagina pero con la variable mensaje para mostrarla
+  header("Location:index.php?mensaje=".$mensaje);
 
 }
 ?>

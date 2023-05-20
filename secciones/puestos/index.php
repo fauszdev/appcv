@@ -9,7 +9,12 @@ if(isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM tbl_puestos WHERE id=:id");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
-    header("Location:index.php");
+
+    //Guardamos el mensaje para mostrarlo en el paso mas adelante
+    $mensaje="Registro eliminado";
+
+    //Redigirá a la misma pagina pero con la variable mensaje para mostrarla
+    header("Location:index.php?mensaje=".$mensaje);
 }
 
 //se prepara la sentencia
@@ -22,7 +27,9 @@ $sentencia -> execute();
 $lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 //print_r($lista_tbl_puestos);
 ?>
+
 <?php include("../../templates/header.php");?>
+
 
 <br>
 
@@ -33,7 +40,7 @@ $lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-body">
         
         <div class="table-responsive">
-            <table class="table table">
+            <table class="table table" id="tabla_id">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -48,10 +55,10 @@ $lista_tbl_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <td scope="row"><?php echo $registro['id'];?></td>
                         <td><?php echo $registro['nombre_puesto'];?></td>
                         <td>
-                        <a name="btn_editar_puesto_empleado" id="btn_editar_puesto_empleado" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'];?>" role="button">Editar</a> |
+                            <a name="btn_editar_puesto_empleado" id="btn_editar_puesto_empleado" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'];?>" role="button">Editar</a> |
                             
                             <!-- Boton con enlace que al pulsar manda un get al index (pagina actual) con la variable txtID que tiene la ID del elemento actual-->
-                            <a name="btn_eliminar_puesto_empleado" id="btn_eliminar_puesto_empleado" class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'];?>" role="button">Eliminar</a>
+                            <a name="btn_eliminar_puesto_empleado" id="btn_eliminar_puesto_empleado" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id'];?>);" role="button">Eliminar</a>
                         </td>
                     </tr>
                     <?php } ?>

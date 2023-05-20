@@ -9,7 +9,12 @@ if(isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM tbl_usuarios WHERE id=:id");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
-    header("Location:index.php");
+
+    //Guardamos el mensaje para mostrarlo en el paso mas adelante
+    $mensaje="Registro eliminado";
+
+    //Redigirá a la misma pagina pero con la variable mensaje para mostrarla
+    header("Location:index.php?mensaje=".$mensaje);
 }
 //se prepara la sentencia
 $sentencia = $conexion->prepare("SELECT * FROM `tbl_usuarios`");
@@ -34,7 +39,7 @@ $lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-body">
         
         <div class="table-responsive">
-            <table class="table table">
+            <table class="table table" id="tabla_id">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -49,11 +54,11 @@ $lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                     <tr class="">
                         <td scope="row"><?php echo $registro['id'];?></td>
                         <td><?php echo $registro['usuario'];?></td>
-                        <td><?php echo $registro['passwrd'];?></td>
+                        <td><?php echo "****";?></td>
                         <td><?php echo $registro['correo'];?></td>
                         <td>
                             <a name="btn_editar_usuario" id="btn_editar_usuario" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id'];?>" role="button">Editar</a> | 
-                            <a name="btn_eliminar_usuario" id="btn_eliminar_usuario" class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id'];?>" role="button">Eliminar</a>
+                            <a name="btn_eliminar_usuario" id="btn_eliminar_usuario" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id'];?>);" role="button">Eliminar</a>
                         </td>
                     </tr>
                     <?php }?>

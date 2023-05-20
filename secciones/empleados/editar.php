@@ -20,14 +20,6 @@ if(isset($_GET['txtID'])){
     $id_puesto = $registro["id_puesto"];
     $fecha_ingreso = $registro["fecha_ingreso"];
 
-    /*$sentencia->bindParam(":primer_nombre",$primer_nombre);
-    $sentencia->bindParam(":segundo_nombre",$segundo_nombre);
-    $sentencia->bindParam(":primer_apellido",$primer_apellido);
-    $sentencia->bindParam(":segundo_apellido",$segundo_apellido);
-    $sentencia->bindParam(":cv_empleado",$nombre_archivo_pdf);
-    $sentencia->bindParam(":id_puesto_empleado",$id_puesto_empleado);
-    $sentencia->bindParam(":fecha_ingreso_empleado",$fecha_ingreso_empleado);
-*/
     $sentencia=$conexion->prepare("SELECT * FROM tbl_puestos");
     $sentencia->execute();
     $lista_puestos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -101,15 +93,9 @@ if(isset($_GET['txtID'])){
           //Hay que adjuntar la foto
           $sentencia->bindParam(":foto_empleado",$nombre_archivo_foto);
           $sentencia->bindParam(":id",$txtID);
-          $sentencia->execute();
-
-
-
-          
+          $sentencia->execute();          
         }
 
-        
-        
         $cv_empleado = (isset($_FILES['cv_empleado']['name'])?$_FILES['cv_empleado']['name']:"");
 
         //Si el valor del pdf tiene nombre (hay un pdf seleccionado) adjuntamos al nombre primero la fecha y despues el nombre que tenia, si no tiene se da valor vacio
@@ -143,7 +129,11 @@ if(isset($_GET['txtID'])){
           $sentencia->execute();
         }
 
-        header("Location:index.php");
+        //Guardamos el mensaje para mostrarlo en el paso mas adelante
+        $mensaje="Registro actualizado";
+
+        //Redigirá a la misma pagina pero con la variable mensaje para mostrarla
+        header("Location:index.php?mensaje=".$mensaje);
     }
 ?>
     <br>

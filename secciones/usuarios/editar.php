@@ -19,7 +19,7 @@ if(isset($_GET['txtID'])){
 
 //Si le llega el POST del boton editar entonces obtiene los datos del form y los actualiza en la BD
 if($_POST){
-    print_r($_POST);
+    //print_r($_POST);
     $txtID=(isset($_POST['id']))?$_POST['id']:"";
     //asignamos a esta variable elcontenido del input de nombre del puesto si le llega via post, si no le llega asignamos como que no hay valor
     $nombre_usuario = (isset($_POST['nombre_usuario'])?$_POST['nombre_usuario']:"");
@@ -35,7 +35,11 @@ if($_POST){
     $sentencia->bindParam(":correo_usuario",$correo_usuario);
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    //Guardamos el mensaje para mostrarlo en el paso mas adelante
+    $mensaje="Registro actualizado";
+
+    //Redigirá a la misma pagina pero con la variable mensaje para mostrarla
+    header("Location:index.php?mensaje=".$mensaje);
 
 }?>
 <?php include("../../templates/header.php");?>
